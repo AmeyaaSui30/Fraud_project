@@ -1,11 +1,6 @@
 # Low-Latency Financial Fraud Detection via Hybrid Streaming Architecture (SOMSAT-Kafka)
 
-**Course / Topic:** Mining of Massive Datasets (MODA) Mini Project  
-**Framework:** Apache Kafka + Scikit-Learn + Streamlit + Docker  
-**Dataset:** SOMSAT (Somaiya / Synthetic Online Money & Settlement Anomaly Transactions)  
-
 ---
-
 ## 📖 1. Project Overview & Architecture Explanation (Project Samjho)
 
 ### 📌 Problem Statement:
@@ -188,27 +183,3 @@ Instead of typing long commands, you can also use:
 ```
 
 ---
-
-## 🎓 6. How to Present to Professors / Evaluators (Viva Guide)
-
-When presenting this project to your professor, highlight these key technical points:
-
-1. **Why Hybrid Architecture?**
-   - Pure batch is too slow (hours of delay).
-   - Pure streaming without batch lacks historical context for training complex models.
-   - Hybrid combines the best of both: Batch trains robust models on heavy historical data, while Speed Layer performs sub-millisecond inference on incoming live events.
-
-2. **Why Isolation Forest instead of Supervised ML?**
-   - Fraud detection has extreme class imbalance (< 5% fraud).
-   - Supervised models overfit to known fraud patterns, failing to detect novel "zero-day" attack vectors.
-   - Isolation Forest isolates anomalies by building random partitioning trees—anomalies require fewer splits and have shorter tree path lengths.
-
-3. **How is Low-Latency Measured?**
-   - When the producer emits an event, it injects a high-precision `event_timestamp = time.time()`.
-   - The consumer measures the delta immediately after inference:
-     $$\text{Latency} = (t_{\text{inference}} - t_{\text{event}}) \times 1000 \text{ ms}$$
-   - The system consistently achieves **3ms - 6ms end-to-end processing latency**.
-
-4. **Live Attack Injection Demo:**
-   - In the Streamlit dashboard (`http://localhost:8501`), use the left sidebar **"Live Fraud Injection Tool"** to inject a customized attack transaction (e.g. ₹95,000 amount, 1,200 km location delta, 0.05 device trust score).
-   - Show how the transaction appears immediately in the Speed Consumer console in RED: `[FRAUD DETECTED]` and updates the dashboard KPI cards in real time!
