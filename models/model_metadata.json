@@ -1,0 +1,28 @@
+{
+  "model_type": "Isolation Forest (Unsupervised Anomaly Detector)",
+  "features": [
+    "amount",
+    "old_balance",
+    "new_balance",
+    "balance_drain_ratio",
+    "velocity_1h",
+    "location_delta_km",
+    "device_trust_score",
+    "device_untrust_score",
+    "is_high_risk_cat",
+    "amount_velocity_interaction",
+    "is_digital_channel"
+  ],
+  "metrics": {
+    "roc_auc": 1.0,
+    "precision": 0.9926,
+    "recall": 0.9926,
+    "f1_score": 0.9926,
+    "total_samples": 6000,
+    "fraud_ratio_pct": 4.5
+  },
+  "score_scaling": {
+    "score_min": -0.2992247906627727,
+    "score_max": 0.11033402219873079
+  }
+}
